@@ -129,58 +129,6 @@ function slider1() {
 }
 slider1();
 
-function initializeSlider(index) {
-  console.log("Initializing slider for index:", index);
-
-  let siblingTrack = $(".i_storyboard_wrap").eq(index).siblings(".i_track");
-  console.log("Sibling track:", siblingTrack);
-
-  let wrapperId = "i_storyboard_wrap" + index;
-  $(".i_storyboard_wrap").eq(index).attr("id", wrapperId);
-  console.log("Wrapper ID:", wrapperId);
-
-  let trackId = "i_track" + index;
-  siblingTrack.attr("id", trackId);
-  console.log("Track ID:", trackId);
-
-  // create wrapper slider
-  let wrapperSlider = new Dragdealer(wrapperId, {
-    handleClass: "i_storyboard_list",
-    loose: true,
-    speed: 0.5,
-    requestAnimationFrame: true,
-    dragStopCallback(x, y) {
-      handleSlider.setValue(x, 0, (snap = true));
-    },
-  });
-
-  // create handle slider
-  let handleSlider = new Dragdealer(trackId, {
-    handleClass: "i_handle",
-    speed: 0.5,
-    requestAnimationFrame: true,
-    animationCallback: function (x, y) {
-      wrapperSlider.setValue(x, 0, (snap = false));
-    },
-  });
-}
-
-$(document).ready(function () {
-  // Initialize slider for each tab
-  $(".i_storyboard_wrap").each(function (index) {
-    initializeSlider(index);
-  });
-
-  // Reinitialize slider when a tab becomes active
-  $(".w-tab-link").on("click", function () {
-    setTimeout(function () {
-      $(".i_storyboard_wrap").each(function (index) {
-        initializeSlider(index);
-      });
-    }, 300); // Adjust this delay based on your needs
-  });
-});
-
 // -----//
 let logoOpacity = gsap
   .timeline({
