@@ -130,15 +130,18 @@ function slider1() {
 slider1();
 
 function initializeSlider(index) {
-  // get sibling track
-  let siblingTrack = $(".i_storyboard_wrap").eq(index).siblings(".i_track");
+  console.log("Initializing slider for index:", index);
 
-  // Apply unique IDs to elements
+  let siblingTrack = $(".i_storyboard_wrap").eq(index).siblings(".i_track");
+  console.log("Sibling track:", siblingTrack);
+
   let wrapperId = "i_storyboard_wrap" + index;
   $(".i_storyboard_wrap").eq(index).attr("id", wrapperId);
+  console.log("Wrapper ID:", wrapperId);
 
   let trackId = "i_track" + index;
   siblingTrack.attr("id", trackId);
+  console.log("Track ID:", trackId);
 
   // create wrapper slider
   let wrapperSlider = new Dragdealer(wrapperId, {
